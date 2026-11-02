@@ -3,18 +3,23 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>MZN Customs · Maniobras, previos y liberación de contenedor</title>
+  <meta name="robots" content="index, follow">
+  <title>Punto Cero Logistica · Maniobras, previos y liberación de contenedor</title>
   <meta name="description" content="Coordinación de maniobras, previos, liberación de contenedor y transporte terrestre en Manzanillo, Colima.">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="canonical" href="">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="MZN Customs · Maniobras, previos y liberación de contenedor">
+  <meta property="og:title" content="Punto Cero Logistica · Maniobras, previos y liberación de contenedor">
   <meta property="og:description" content="Coordinación de maniobras, previos, liberación de contenedor y transporte terrestre en Manzanillo, Colima.">
+  <meta property="og:url" content="">
   <meta property="og:image" content="social-preview.webp">
+  <meta property="og:image:secure_url" content="social-preview.webp">
   <meta property="og:image:type" content="image/webp">
   <meta property="og:image:alt" content="Operaciones portuarias en Manzanillo">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="social-preview.webp">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -27,8 +32,8 @@
   <!-- ============================== ENCABEZADO ============================== -->
   <header class="site-header">
     <div class="wrap">
-      <a class="brand" href="#inicio" aria-label="MZN Customs & Cargo Solutions, S. A. S. - Inicio">
-        <img class="brand-logo" src="logo.png" width="692" height="324" alt="MZN Customs & Cargo Solutions - Manzanillo, México">
+      <a class="brand" href="#inicio" aria-label="Punto Cero Logistica - Inicio">
+        <img class="brand-logo" src="logo.png" width="728" height="590" alt="Punto Cero Logistica - Manzanillo, México">
       </a>
       <nav class="site-nav" id="menu" aria-label="Principal">
         <ul class="nav-list">
@@ -283,7 +288,7 @@
     <div class="wrap">
       <p>Los trámites aduanales se realizan a través de un agente aduanal autorizado.</p>
       <p><a href="aviso-privacidad.html">Aviso de privacidad</a></p>
-      <p>© <span id="year"></span> MZN Customs &amp; Cargo Solutions, S. A. S. · Manzanillo, Colima.</p>
+      <p>© <span id="year"></span> Punto Cero Logistica · Manzanillo, Colima.</p>
     </div>
   </footer>
 
@@ -441,22 +446,28 @@
       });
 
       const isEnglish = language === "en";
-      document.querySelector(".brand").setAttribute("aria-label", localized("MZN Customs - Inicio", "MZN Customs - Home"));
-      document.querySelector(".brand-logo").alt = localized("MZN Customs & Cargo Solutions - Manzanillo, México", "MZN Customs & Cargo Solutions - Manzanillo, Mexico");
+      document.querySelector(".brand").setAttribute("aria-label", localized("Punto Cero Logistica - Inicio", "Punto Cero Logistica - Home"));
+      document.querySelector(".brand-logo").alt = localized("Punto Cero Logistica - Manzanillo, México", "Punto Cero Logistica - Manzanillo, Mexico");
       document.getElementById("menu").setAttribute("aria-label", localized("Principal", "Main navigation"));
       document.getElementById("language-label").textContent = localized("Idioma", "Language");
       document.title = isEnglish
-        ? "MZN Customs · Port handling, inspections and container release"
-        : "MZN Customs · Maniobras, previos y liberación de contenedor";
+        ? "Punto Cero Logistica · Port handling, inspections and container release"
+        : "Punto Cero Logistica · Maniobras, previos y liberación de contenedor";
       document.querySelector('meta[name="description"]').content = isEnglish
         ? "Coordination of port handling, inspections, container release and ground transportation in Manzanillo, Colima."
         : "Coordinación de maniobras, previos, liberación de contenedor y transporte terrestre en Manzanillo, Colima.";
+      const pageUrl = new URL(window.location.href);
+      const absolutePreviewUrl = new URL("social-preview.webp", pageUrl).toString();
       document.querySelector('meta[property="og:title"]').content = document.title;
       document.querySelector('meta[property="og:description"]').content = document.querySelector('meta[name="description"]').content;
+      document.querySelector('meta[property="og:url"]').content = pageUrl.toString();
+      document.querySelector('link[rel="canonical"]').href = pageUrl.toString();
+      document.querySelector('meta[property="og:image"]').content = absolutePreviewUrl;
+      document.querySelector('meta[property="og:image:secure_url"]').content = absolutePreviewUrl;
+      document.querySelector('meta[name="twitter:image"]').content = absolutePreviewUrl;
       updateContactContent();
       updateFormStatus();
     }
-
     function getSavedLanguage() {
       try {
         return localStorage.getItem("mzn-language");
